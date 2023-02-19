@@ -68,7 +68,10 @@ def divar_token(**api_data_filter):
     print(len(list_of_tokens))
     # TODO : write to database
     path_data = './Data/'
-    old_tokens = set(open(path_data + '__tokens__.csv', 'r').read().split('\n'))
+    try:
+        old_tokens = set(open(path_data + '__tokens__.csv', 'r').read().split('\n'))
+    except:
+        old_tokens = set([])
     list_of_tokens = set(list_of_tokens) - old_tokens
     return list_of_tokens
 

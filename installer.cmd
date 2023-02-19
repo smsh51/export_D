@@ -2,10 +2,14 @@
 echo install Divar app
 
 pip install -r requirements.txt
-mkdir Data
+del requirements.txt
 
-echo python main.pyc > Run.bat
+mkdir Data
+ren __pycache__\main.cpython-311.pyc main.pyc
+
+echo @ECHO off > Run.bat
+echo python __pycache__\main.pyc >> Run.bat
 
 echo OK!
-del install.cmd
+del installer.cmd
 PAUSE
