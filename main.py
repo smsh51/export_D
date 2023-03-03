@@ -404,6 +404,8 @@ def main(s):
 
     self = TestExporturlhome()
     self.setup_method()
+
+    # TODO : input number and handel block number
     # login by default number
     if False:
         self.login()
