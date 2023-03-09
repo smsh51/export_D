@@ -22,6 +22,9 @@ def exit_e():
     print('exit divar api app.')
 
 
+def log(message: str, number: int): ...
+
+
 # %% api
 def divar_token(**api_data_filter):
     url = 'https://api.divar.ir/v8/search/{}/{}'.format(api_data_filter['json_schema']['cities'][0], api_data_filter['json_schema']['category']['value'])
@@ -90,7 +93,7 @@ class TestExporturlhome():
     def teardown_method(self):
         self.driver.quit()
 
-    def login(self, number: str = '09303492545'):
+    def Login(self, number: str = '09303492545'):
         """
         login by sms code.
 
@@ -407,8 +410,26 @@ def main(s):
 
     # TODO : input number and handel block number
     # login by default number
-    if False:
-        self.login()
+    start_time_number = time.time()
+    while time.time()-start_time_number < 30:
+        number = input('Enter number of login: ')
+        if number == '':
+            print('can not save number of advertiser.')
+            break
+        if (len(number) == 11) and (number[:2] == '09'):
+            try:
+                int(number)
+                print('accept number.')
+                self.Login(number)
+                break
+            except Exception as e:
+                print('pleas enter number.')
+                print(e)
+        else:
+            print('number not valid.')
+    else:
+        print('time out for enter number.')
+        print('can not save number of advertiser.')
 
     category_dict = {'real_estate': self.export_home,
                      'khdro': self.export_khodro}
